@@ -1,6 +1,23 @@
 version: '3.8'
 
 services:
+  # Ansible Control Node
+  ansible-controller:
+    image: ubuntu:22.04
+    container_name: ansible-controller
+    volumes:
+      - .:/ansible
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /ansible
+    command: >
+      sh -c "apt-get update && 
+             apt-get install -y python3 python3-pip docker.io && 
+             pip install ansible && 
+             tail -f /dev/null"
+    networks:
+      - ansible-net
+
+  # Target Node 1
   target1:
     image: ubuntu:22.04
     container_name: target1
@@ -8,6 +25,7 @@ services:
     networks:
       - ansible-net
 
+  # Target Node 2
   target2:
     image: ubuntu:22.04
     container_name: target2
