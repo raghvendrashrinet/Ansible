@@ -74,8 +74,8 @@ Stop and remove the lab when done:
 ```Bash
 docker compose down
 ```
-```
- [!NOTE]
+
+ >[!NOTE]
  **Quick Ansible Docker Lab Instructions**
 
  **Step 1: Manage Your Lab Lifecycle**
@@ -85,7 +85,7 @@ docker compose down
  * **Check containers:** `docker compose ps`
  * **Test Ansible ping:** `ansible webservers -m ping`
  * **Stop & remove lab:** `docker compose down`
-```
+
 > **Step 2: Run a Test Playbook**
 > Create `site.yml`:
 ```yaml
