@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  target1:
+    image: ubuntu:22.04
+    container_name: target1
+    command: sh -c "apt-get update && apt-get install -y python3 && tail -f /dev/null"
+    networks:
+      - ansible-net
+
+  target2:
+    image: ubuntu:22.04
+    container_name: target2
+    command: sh -c "apt-get update && apt-get install -y python3 && tail -f /dev/null"
+    networks:
+      - ansible-net
+
+networks:
+  ansible-net:
+    driver: bridge
