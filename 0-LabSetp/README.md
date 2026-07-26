@@ -57,6 +57,14 @@ Start the dummy servers:
 ```Bash
 docker compose up -d
 ```
+Check
+```
+ #shows running projects (stacks):
+  docker compose ls
+
+ # shows individual containers inside the project
+  docker compose ps
+```
 Test connectivity with Ansible:
 
 ```Bash
@@ -66,11 +74,21 @@ Stop and remove the lab when done:
 ```Bash
 docker compose down
 ```
-#### Step 4: Run a Test Playbook
-Create a test playbook site.yml:
+```
+ [!NOTE]
+ **Quick Ansible Docker Lab Instructions**
 
-```YAML
----
+ **Step 1: Manage Your Lab Lifecycle**
+ Bring your test environment up or tear it down:
+ * **Start dummy servers:** `docker compose up -d`
+ * **Check running stacks:** `docker compose ls`
+ * **Check containers:** `docker compose ps`
+ * **Test Ansible ping:** `ansible webservers -m ping`
+ * **Stop & remove lab:** `docker compose down`
+```
+> **Step 2: Run a Test Playbook**
+> Create `site.yml`:
+```yaml
 - name: Test Ansible on Docker Targets
   hosts: webservers
   tasks:
