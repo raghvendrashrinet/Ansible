@@ -30,3 +30,8 @@ stapp03 ansible_host=stappo3 ansible_user=banner ansible_ssh_pass=BigB0ss
    ```
     ansible-playbook -i inventory.ini playbook.yml
    ```
+> [!NOTE]
+> By default, when become: yes is enabled, Ansible automatically defaults to root. So explicitly declaring
+> become_user: root simply tells Ansible:
+>
+> Connect to the target host as the SSH user (e.g., banner), but execute these tasks as root using sudo.
