@@ -25,7 +25,7 @@ users:
 package_update: true
 ```
 #####  Step 3: Deploy Target Infrastructure via Terraform
-Pass the cloud-init configuration when provisioning target servers using Terraform (e.g., AWS EC2):
+Pass the cloud-init configuration when provisioning target servers using Terraform (e.g., Azure VM):
 ```Terraform
 provider "azurerm" {
   features {}
