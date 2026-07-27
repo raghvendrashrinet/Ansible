@@ -1,5 +1,18 @@
+#### To configure already existing target
+- SSH Key Setup (Cloud / Direct Nodes):
+  If target nodes already have the Ansible user and public key injected:
+  `inventory.ini`
+  ```Ini, TOML
+  [webservers]
+192.168.1.50
+192.168.1.51
 
-
+[webservers:vars]
+ansible_user=ansible
+ansible_ssh_private_key_file=~/.ssh/ansible_id_ed25519
+ansible_python_interpreter=/usr/bin/python3
+```
+--
 ### Method 1 : Automated Provisioning via Cloud-Init & IaC (Cloud & VMs).
 In cloud  or virtualized infra(VMware, OpenStack), target nodes are provisioned using IaC like Terraform. 
 `Cloud-init` runs on initial boot to automatically inject the Ansible control node’s public SSH key and configure passwordless sudo access.
