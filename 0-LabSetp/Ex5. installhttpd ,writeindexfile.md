@@ -58,7 +58,11 @@ Please do not modify this file manually!
           </html>
 
 ```
-### Check if httpd running 
+### Check if httpd running using the ansible.builtin.service_facts module
 ```
 ansible -i inventory all -m ansible.builtin.service_facts | grep -E "stapp0|httpd"
+```
+### Linux Command Way -Use Linux systemctl command via Ansible across all nodes simultaneously 
+```
+ansible -i inventory all -m ansible.builtin.command -a "systemctl is-active httpd"
 ```
