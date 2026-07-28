@@ -58,3 +58,7 @@ Please do not modify this file manually!
           </html>
 
 ```
+### Check if httpd running 
+```
+ansible -i inventory all -m ansible.builtin.service_facts | grep -E "stapp0|httpd"
+```
