@@ -4,6 +4,16 @@
 stapp03 ansible_host=stappo3 ansible_user=banner ansible_ssh_pass=BigB0ss
 ```
 
+```
+┌──────────────┬───────────────────────────────┬───────────────────┐
+│ stapp01      │ ansible_host=stapp01          │ ansible_user=tony │
+└──────────────┴───────────────────────────────┴───────────────────┘
+      │                    │
+      │                    │
+      ▼                    ▼
+Inventory Hostname     Real SSH Host
+```
+
 2.  copy ssh-copy-id to target server
    `ssh-copy-id -i ../.ssh/id_ed25519.pub banner@stapp03 `
 3. Run test ping module
