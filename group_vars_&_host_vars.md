@@ -83,6 +83,7 @@ Example:
 group_vars/
 └── webservers.yml
 ```
+*Note: file name 'webservers.yml` should be same as group name*
 
 ```yaml
 port: 80
