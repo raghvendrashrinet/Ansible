@@ -236,6 +236,23 @@ Declare variables directly inside the playbook file itself:
         src: config.conf.j2
         dest: /etc/myapp/config.conf
 ```
+---
+  ### for inventory in ini format 
+  ```
+  [webservers]
+   stapp01 ansible_host=stapp01 ansible_ssh_pass=Ir0nM@n ansible_user=tony
+   stapp02 ansible_host=stapp02 ansible_ssh_pass=Am3ric@ ansible_user=steve
+  ```
+ ### jinja file will be like this 
+ ```
+    hostname={{ inventory_hostname }}
+    ip={{ ansible_host }}
+    environment={{ environment }}
+    port={{ port }}
+ ```
+
+
+
 # Step 3 - Playbook
 
 ```yaml
@@ -336,7 +353,7 @@ I need hostname.
 Ansible replies
 
 ```
-web01
+web01 # inventory file
 ```
 
 Jinja2 replaces it.
@@ -344,7 +361,7 @@ Jinja2 replaces it.
 Then Jinja2 asks
 
 ```
-I need ansible_host.
+I need ansible_host.  # from inventory file
 ```
 
 Ansible replies
