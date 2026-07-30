@@ -149,7 +149,7 @@ Only **web01** is affected.
 
 ### Think of it as
 
-> **Employee-specific exception**
+> **Server-specific exception**
 
 ---
 
