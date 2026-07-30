@@ -179,27 +179,67 @@ ansible_host = 10.0.1.12
 ---
 
 # Step 2 - Variables
+---
 
-Suppose you also have
+## ❓ Where Do `env` and `port` Variables Come From?
 
-```yaml
-env: production
-port: 80
-```
+While `hostname` and `ansible_host` are typically pulled directly from the inventory or gathered facts, user-defined variables like `env` and `port` are provided to Ansible through **Variable Files** or **Playbook Configurations**.
 
-Now Ansible knows
-
-```
-env = production
-port = 80
-```
+When running a playbook, Ansible merges variables from multiple places into a single dictionary before passing them to the Jinja2 template engine.
 
 ---
 
+### Common Sources for Custom Variables
+
+#### 1. Group Variables (`group_vars/`) — *Recommended Practice*
+Define variables that apply to an entire group of servers in `group_vars/<group_name>.yml`:
+
+* **`group_vars/webservers.yml`**:
+  ```yaml
+  env: production
+  port: 80
+---
+#### 2. Host Variables (host_vars/)
+Override or set unique values for individual target servers in host_vars/<hostname>.yml:
+
+- `host_vars/web01.yml:`
+
+```YAML
+env: development
+port: 8080
+```
+#### 3. Inline Inventory Variables
+Define variables directly inside your `inventory.yml` file under a `vars` block:
+```yaml
+all:
+  children:
+    webservers:
+      vars:
+        env: production
+        port: 80
+      hosts:
+        web01:
+          ansible_host: 10.0.1.10
+        web02:
+          ansible_host: 10.0.1.11
+```
+#### 4. Playbook-Level Variables (vars: block)
+Declare variables directly inside the playbook file itself:
+```yaml
+- hosts: webservers
+  vars:
+    env: production
+    port: 80
+  tasks:
+    - name: Generate Application Configuration
+      ansible.builtin.template:
+        src: config.conf.j2
+        dest: /etc/myapp/config.conf
+```
 # Step 3 - Playbook
 
 ```yaml
-- hosts: webservers
+- hosts: webservers   # or `all` for all server
 
   tasks:
 
